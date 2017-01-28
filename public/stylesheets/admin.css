@@ -1,0 +1,466 @@
+/** Main layout **/
+
+html, body {
+    background: #364B66 !important;
+    font-family: "Microsoft YaHei", serif;
+}
+
+body {
+    width: 900px;
+    padding: 0 30px;
+    margin: auto;
+}
+
+div {display: block}
+/** Blog header **/
+
+#header {
+    padding: 10px 0;
+    position: relative;
+}
+
+#logo {
+    display: block;
+    height: 49px;
+    margin-left: 20px;
+    color: #fff;
+    font-size: 48px;
+    font-weight: bold;
+    letter-spacing: -4px;
+    text-shadow: 1px 2px 2px #000;
+}
+
+#logo span {
+    color: #f00;
+    font-size: 70%;
+}
+
+#tools {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    top: 30px;
+    right: 20px;
+}
+
+#tools a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/*#title {
+    background: #B8C569;
+    padding: 20px 30px 30px 20px;
+    margin: 20px 0;
+    color: #3C4313;
+    position: relative;
+    -webkit-border-radius: 16px;
+    -webkit-box-shadow: 0 2px 0 #93A045;
+    -moz-border-radius: 16px;
+}*/
+
+/** A little hacky to create arrows without images **/
+.about {
+    text-indent: -999em;
+    display: block;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #BAC36E;
+    border-top: 0;
+    position: absolute;
+    top: -10px;
+    left: 60px;
+}
+
+#title h1 {
+    font-size: 64px;
+    margin: 0;
+}
+
+#title h1 a {
+    text-decoration: none;
+    color: inherit;
+}
+
+#title h2 {
+    font-size: 26px;
+    margin: 0;
+    font-weight: normal;
+}
+
+/** Main content **/
+
+#main {
+    background: #314660;
+    background: -webkit-gradient(linear, left top, left 30%, from(#314660), to(#364B66));
+    -webkit-border-radius: 16px;
+    -moz-border-radius: 16px;
+    padding: 20px;
+}
+
+/** Form **/
+
+form {
+    padding: 10px;
+    background: #253142;
+    background: -webkit-gradient(linear, left top, left 60%, from(#253142), to(#364B66));
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+}
+
+form .error {
+    background: #c00;
+    color: #fff;
+    font-size: 90%;
+    padding: 3px 5px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -webkit-box-shadow: 0 2px 0 #800;
+}
+
+form .error:empty {
+    display: none;
+}
+
+form p {
+    margin: 5px 0 0 0;
+}
+
+form textarea {
+    width: 70%;
+    height: 150px;
+}
+
+form input, form textarea {
+    font-size: 14px;
+}
+
+form label {
+    display: block;
+    font-weight: bold;
+    font-size: 90%;
+    color: #aaa;
+    margin-bottom: 3px;
+}
+
+#captcha{
+    display: block;
+    height: 50px;
+}
+
+.success {
+    background: #67AD10;
+    color: #fff;
+    padding: 10px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -webkit-box-shadow: 0 2px 0 #4E840B;
+    margin-bottom: 15px;
+}
+.error {
+    background: #c00;
+    color: #fff;
+    padding: 20px 5px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -webkit-box-shadow: 0 2px 0 #800;
+    margin-bottom: 5px;
+    display: none;
+}
+.error p{
+    font-size: 14px;
+    padding-left: 15%;
+}
+
+/** Pagination **/
+
+#pagination {
+    text-align: center;
+    padding: 0;
+    position: relative;
+    color: white;
+    font-size: 16px;
+}
+
+#pagination ul{list-style-type: none;}
+#pagination ul li{display: inline; margin: 10px;cursor: pointer}
+.disabled { color: gray }
+
+/** Footer **/
+
+#footer {
+    border-top: 1px solid #45597A;
+    font-size: 70%;
+    padding: 10px 30px;
+    text-align: center;
+    color: #869AB1;
+    margin-top: 30px;
+}
+
+#footer a {
+    color: #869AB1;
+    font-weight: bold;
+}
+
+/** Admin **/
+
+.tags-list .tag {
+    cursor: pointer;
+    color: red;
+}
+
+#adminMenu {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+
+#adminMenu li {
+    display: inline;
+}
+
+#adminMenu li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 80%;
+    background: #591C64;
+    padding: 2px 10px;
+    -webkit-border-radius: 9px;
+    -moz-border-radius: 9px;
+}
+
+#adminMenu li.selected a {
+    background: #82A346;
+}
+
+#crud {
+    margin: 0;
+    padding: 0;
+    font-family: 'Microsoft YaHei', sans-serif;
+    font-size: 90%;
+    color: #111;
+}
+
+#crudList {
+    position: relative;
+}
+
+#crudContent {
+    color: #8B98AD;
+}
+
+#crud #crudContent h2, #crud #crudContent h3 {
+    color: #333;
+    font-weight: normal;
+    margin-top: 10px;
+    color: #EDC3CD !important;
+}
+
+#crudListSearch input[type=text]{
+    width: 40%;
+    border-radius: 10px;
+}
+
+#crudListSearch input[type=submit]{
+    margin-left: 10px;
+    border-radius: 5px;
+}
+
+tr.odd {
+    background: #BECCE7;
+}
+tr.even {
+    background: white;
+}
+
+#crud #crudContent, #crudContent form, #crudListSearch, #crudListPagination, .crudButtons {
+    background: transparent;
+    border: none;
+    padding: 0;
+}
+
+#crudListTable {
+    margin: 20px 0;
+}
+#crudListTable table{
+    border: solid black 1px;
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+#crudListTable thead tr{
+    background: #512162;
+}
+#crudListTable thead th {
+    font-size: 110%;
+    padding: 6px 5px;
+    color: white;
+    font-weight: bold;
+}
+#crudListTable tbody tr:hover{
+    background: #fbf8e9;
+}
+#crudListTable tbody td{
+    text-align: center;
+    border-top: 1px solid black;
+    border-left:1px solid black;
+    padding: 8px;
+    color: black;
+}
+#crudListTable tbody a {
+    color: #444;
+}
+/* 以下3个为修改和删除按钮设置了样式*/
+.td-fix, .td-delete{
+    text-align: center;
+}
+.td-fix i:hover {
+    color: blue;
+}
+.td-delete i:hover{
+    color: red;
+}
+
+#crudListAdd a {
+    margin: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #54BD06;
+    padding: 3px 10px;
+    font-size: 110%;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    color: #fff !important;
+    text-decoration: none;
+}
+#crudListAdd a:hover{
+    background: deepskyblue;
+}
+
+.crudField, .objectForm {
+    border: none;
+    padding: 10px;
+    margin: 10px;
+    color:black;
+}
+.crudField {
+    border-radius: 8px;
+}
+.crudField label {
+    color: #B8FA5C;
+    width: 20%;
+    float: left;
+    font-size: 16px;
+    text-align: right;
+    padding-right: 10px;
+}
+.crudField input[type=text]{
+    border-radius: 6px;
+}
+.crudField select {
+    border-radius: 6px;
+}
+div#simditor label{
+    color: #B8FA5C;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+.crudHelp {
+    color: #fff !important;
+    margin-left: 10px;
+}
+.crudField .tag {
+    color: #111;
+    font-size: 80%;
+}
+
+.crudButtons input {
+    position: absolute;
+    width: 30%;
+    font-size: 15px;
+    left:35%;
+    border-radius: 10px;
+}
+.crudButtons input:hover{
+    background: #54BD06;
+}
+.crudButtons {
+    margin-top: 20px;
+    padding-top: 10px;
+}
+
+.crudFlash {
+    border: 0;
+    -webkit-border-radius: 8px;
+    font-size: 80%;
+    padding: 2px 10px;
+}
+
+.crudField .tag.selected {
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+}
+
+.crudField .error {
+    background: transparent;
+    border: none;
+    padding: 0;
+    color: pink;
+    -webkit-box-shadow: none;
+}
+
+/** Login **/
+div#login {
+    width: 500px;
+    margin:50px auto;
+    text-align: center;
+}
+
+#login h1 {
+    font-weight: bold;
+    color: white;
+}
+
+
+
+#login form {
+    background: #8B98AD !important;
+    border: 0 !important;
+    -webkit-border-radius: 16px;
+    -moz-border-radius: 16px;
+}
+
+#login label {color: white}
+
+#login #password-field label, #username-field label {
+    color: #161D28 !important;
+    font-size: 110% !important;
+}
+
+#signin{
+    margin-top: 10px;
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#signin:hover {
+    background: white;
+}
+
+
+#remember-field {
+    display: none;
+}
+
+.hasError {
+    background: pink;
+}
