@@ -1,0 +1,22 @@
+@(companyNews : List[NewContent])
+@views.html.NewContent.navigation{
+<div class="gywm_box2_r_zj fr">
+    <div class="bhk">
+        <h3 class="fl">乐正新闻</h3>
+        <div class="fr jj_you">
+            <span>当前位置：</span><a href="@routes.Application.index()" >首页</a> >
+            <a href="@routes.Application.companyNews()" >新闻资讯</a> > 乐正新闻 </div>
+    </div>
+    <div>
+        <div class="rongqi">
+            @for(nc <- companyNews){
+                <dl class="ov_h" >
+                    <dt class="fl">
+                        <a href="@routes.Application.showCompanyNew(nc.getID)"><h2>@nc.title</h2></a>
+                <h3>摘要：@nc.brief ...</h3>
+                }
+        </dl>
+        </div>
+    </div>
+</div>
+}

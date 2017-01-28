@@ -1,0 +1,117 @@
+@(marketnewForm: Form[MarketNew])
+@admin("市场资讯--编辑", nav = "marketnews"){
+<div id="crud">
+    <div id="crudContent">
+        <h3 id="crudShowTitle">编辑 @marketnewForm("title").valueOr("新资讯")</h3>
+        <div class="objectForm">
+            <form action="@routes.MarketNews.save()" method="post" enctype="multipart/form-data">
+                @* 错误提醒 *@
+                @if(flash.containsKey("error")){
+                    <div class="error">
+                    @flash.get("error")
+                    </div>
+                }
+                <div class="error" id="div-error"><p></p></div>
+                <input type="hidden" id="id" name="id" value="@marketnewForm("id").valueOr("")">
+                <div class="crudField crud_text">
+                    <label for="title">
+                        标题 :
+                    </label>
+                    <input id="title" type="text" name="title"
+                    value="@marketnewForm("title").valueOr("")" size="50"/>
+                    <span class="crudHelp">
+                        必填，最大长度为40
+                    </span>
+                </div>
+                <div class="crudField crud_date">
+                    <label for="datenews">
+                        日期 :
+                    </label>
+                    <input id="datenews" type="text" name="datenews"
+                    value="@marketnewForm("datenews").valueOr("")" size="10"/>
+                    <span class="crudHelp">
+                        日期格式：yyyy-MM-dd
+                        必填
+                    </span>
+                </div>
+                <div class="crudField crud_text">
+                    <label for="source">
+                        新闻来源 :
+                    </label>
+                    <input id="source" type="text" name="source"
+                    value="@marketnewForm("source").valueOr("")" size="50"/>
+                    <span class="crudHelp">
+                        必填
+                    </span>
+                </div>
+                <div class="crudField crud_text">
+                    <label for="brief">
+                        摘要 :
+                    </label>
+                    <input id="brief" type="text" name="brief"
+                    value="@marketnewForm("brief").valueOr("")" size="50"/>
+                    <span class="crudHelp">
+                        必填，最大长度为50
+                    </span>
+                </div>
+                <div id="simditor">
+                    @* simditor *@
+                    <label for="content">
+                        新闻内容 :
+                    </label>
+                    <textarea id="content" placeholder="" name="content"></textarea>
+                </div>
+                <p class="crudButtons">
+                    <input type="button" name="save" value="保存" id="btn-save"/>
+                </p>
+            </form>
+        </div>
+    </div>
+</div>
+    <script type="text/javascript"> 
+        // 表单验证
+        $(function() {
+            var content = new Simditor({
+               textarea: $("#content"),
+                toolbar: ['title','bold','italic','underline','strikethrough','fontScale','color',
+                            'ol','ul','blockquote','table','link','image','hr'],
+                upload: true,
+                pasteImage: true,
+                imageButton:['upload']
+            });
+            // set content
+            content.setValue('@Html(marketnewForm("content").valueOr(""))');
+            // datepicker
+            $("#datenews").datepicker({
+                dateFormat: 'yy-mm-dd',
+                showOtherMonths: true,
+                changeMonth: true,
+                changeYear: true
+            });
+            $("#btn-save").click(function() {
+                if($("#title").val()==""){
+                    showError("请输入标题。", $("#title"));
+                    return false;
+                }else if($("#title").val().length >= 40){
+                   showError("标题过长。", $("#title"));
+                    return false;
+                }else if($("#datenews").val() == ""){
+                    showError("请为该新闻选择一个日期。", $("#datenews"));
+                    return false;
+                }else if($("#source").val() == ""){
+                    showError("请填写新闻来源。", $("#source"));
+                    return false;
+                }else if($("#brief").val()==""){
+                    showError("请填写新闻摘要。", $("#brief"));
+                    return false;
+                }
+                $("form").submit();
+            });
+            function showError(msg, obj){
+                $("#div-error p").html(msg);
+                $("#div-error").show();
+                obj.focus();
+            }
+        })
+    </script>
+}

@@ -1,0 +1,75 @@
+@(title : String, nav:String = "")(content : Html)
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>@title</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        @* jquery ui 用于使用datepicker*@
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+        @* bootstrap *@
+        <link href="@routes.Assets.at("bootstrap/css/bootstrap.min.css")"
+            rel="stylesheet" media="screen">
+        @* 后台主要样式文件 *@
+        <link rel="stylesheet" type="text/css" media="screen"
+            href="@routes.Assets.at("stylesheets/admin.css")" />
+
+        @* 引用jquery *@
+        <script type="text/javascript" src="@routes.Assets.at("javascripts/jquery.min.js")"></script>
+        @* jquery ui 用于使用datepicker*@
+        <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/simditor.css")">
+        @* 文本编辑插件--simditor*@
+        <script type="text/javascript" src="@routes.Assets.at("javascripts/module.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.at("javascripts/hotkeys.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.at("javascripts/uploader.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.at("javascripts/simditor.js")"></script>
+    </head>
+    <body id="header">
+        <div id="logo">
+            乐正资本. <span>后台管理</span>
+            <ul id="tools">
+                <li>
+                    <a href="#">退出</a>
+                </li>
+            </ul>
+        </div>
+        <div id="main">
+            <ul id="adminMenu">
+                <li class="@("selected".when(nav=="products"))">
+                    <a href="@routes.Products.list()">产品</a>
+                </li>
+                <li class="@("selected".when(nav=="pps"))">
+                    <a href="@routes.PreviousProfits.list()">历史业绩</a>
+                </li>
+                <li class="@("selected".when(nav=="messages"))">
+                    <a href="@routes.Messages.list()">留言</a>
+                </li>
+                <li class="@("selected".when(nav=="marketnews"))">
+                    <a href="@routes.MarketNews.list()">市场资讯</a>
+                </li>
+                <li class="@("selected".when(nav=="newcontents"))">
+                    <a href="@routes.NewContents.list()">公司新闻</a>
+                </li>
+            </ul>
+                <!-- 错误提示 -->
+            @if(flash.containsKey("success")){
+                <div class="success">
+                @flash.get("success")
+                </div>
+            }
+            @if(flash.containsKey("error")){
+                <div class="error">
+                @flash.get("error")
+                </div>
+            }
+
+            <hr/>
+            @* 主要内容 *@
+            @content
+        </div>
+        <p id="footer">
+            2016 &copy; 北京乐正资本管理有限公司版权所有
+        </p>
+    </body>
+</html>

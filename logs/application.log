@@ -1,0 +1,9 @@
+2017-01-27 12:04:27,975 - [INFO] - from play in pool-4-thread-3 
+Listening for HTTP on /0:0:0:0:0:0:0:0:9000
+
+2017-01-27 12:04:54,327 - [INFO] - from play in play-internal-execution-context-1 
+database [default] connected at jdbc:mysql://localhost/yuezheng
+
+2017-01-27 12:04:54,902 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
+

@@ -1,0 +1,266 @@
+@(prodForm: Form[Product])
+@import helper._
+@admin("产品管理-编辑", nav = "products"){
+<div id="crud">
+<div id="crudContent">
+    <h3 id="crudShowTitle">编辑新闻--@prodForm("name").valueOr("新产品")</h3>
+    <div class="objectForm">
+        <form action="@routes.Products.save()" method="post" enctype="multipart/form-data" >
+            @* 错误提醒 *@
+            @if(flash.containsKey("error")){
+                <div class="error">
+                @flash.get("error")
+                </div>
+            }
+            <div class="error" id="error-name"><p></p></div>
+            <input type="hidden" id="id" name="id" value="@prodForm("id").valueOr("")">
+            <div class="crudField crud_text">
+                <label for="name">
+                    产品名称 :
+                </label>
+                <input id="name" type="text" name="name"
+                    value='@prodForm("name").valueOr("")' size="50" />
+                <span class="crudHelp">
+                    必填
+                </span>
+            </div>
+            <div class="crudField crud_text">
+                <label for="type">
+                    产品类型 :
+                </label>
+                <input id="type" class="" type="text" name="type"
+                    value="@prodForm("type").valueOr("")" size="50" />
+                <span class="crudHelp">
+                </span>
+            </div>
+            <div class="crudField crud_text">
+                <label for="adviser">
+                    投资顾问 :
+                </label>
+                <input id="adviser" class="" type="text" name="adviser"
+                    value="@prodForm("adviser").valueOr("")" size="50" />
+                <span class="crudHelp">
+                </span>
+            </div>
+            <div class="crudField crud_text">
+                <label for="bank">
+                    托管人 :
+                </label>
+                <input id="bank" class="" type="text" name="bank"
+                    value="@prodForm("bank").valueOr("")" size="50" />
+                <span class="crudHelp">
+                </span>
+            </div>
+            <div class="crudField crud_text">
+                <label for="company">
+                    证券公司 :
+                </label>
+                <input id="object_company" class="" type="text" name="company"
+                    value="@prodForm("company").valueOr("")" size="50" />
+                <span class="crudHelp">
+                </span>
+            </div>
+            <div class="crudField crud_text">
+                <label for="manager">
+                    投资经理 :
+                </label>
+                <input id="manager" class="" type="text" name="manager"
+                    value="@prodForm("manager").valueOr("")" size="50" />
+                <span class="crudHelp">
+                </span>
+            </div>
+            @* 错误提醒 *@
+            <div class="error" id="error-date"><p></p></div>
+            <div class="crudField crud_date">
+                <label for="date">
+                    成立日期 :
+                </label>
+                <input id="date" class="" type="text" name="date"
+                    value="@prodForm("date").valueOr("")" size="10" />
+                <span class="crudHelp">
+                    日期格式：yyyy-MM-dd
+                    必填
+                </span>
+            </div>
+            <div class="crudField crud_text">
+                <label for="init">
+                    初始成立规模 :
+                </label>
+                <input id="init" class="" type="text" name="init"
+                    value="@prodForm("init").valueOr("")" size="50" />
+                <span class="crudHelp">
+                </span>
+            </div>
+            <div class="crudField crud_text">
+                <label for="lockup">
+                    封闭期 :
+                </label>
+                <input id="lockup" class="" type="text" name="lockup"
+                    value="@prodForm("lockup").valueOr("")" size="50" />
+                <span class="crudHelp">
+                </span>
+            </div>
+            <div class="crudField crud_text">
+                <label for="xucun">
+                    续存期 :
+                </label>
+                <input id="xucun" class="" type="text" name="xucun"
+                    value="@prodForm("xucun").valueOr("")" size="50" />
+                <span class="crudHelp">
+                </span>
+            </div>
+            <div class="crudField crud_text">
+                <label for="openday">
+                    开放日 :
+                </label>
+                <input id="openday" class="" type="text" name="openday"
+                    value="@prodForm("openday").valueOr("")" size="50" />
+                <span class="crudHelp">
+                </span>
+            </div>
+            <div class="crudField crud_text">
+                <label for="guzhiday">
+                    估值基准日 :
+                </label>
+                <input id="guzhiday" class="" type="text" name="guzhiday"
+                    value="@prodForm("guzhiday").valueOr("")" size="50" />
+                <span class="crudHelp">
+                </span>
+            </div>
+            <div class="crudField crud_text">
+                <label for="trusteefee">
+                    托管费 :
+                </label>
+                <input id="trusteefee" class="" type="text" name="trusteefee"
+                    value="@prodForm("trusteefee").valueOr("")" size="50" />
+                <span class="crudHelp">
+                </span>
+            </div>
+            <div class="crudField crud_text">
+                <label for="administrativefee">
+                    行政服务费 :
+                </label>
+                <input id="administrativefee" class="" type="text" name="administrativefee"
+                    value="@prodForm("administrativefee").valueOr("")" size="50" />
+                <span class="crudHelp">
+                </span>
+            </div>
+            <div class="crudField crud_text">
+                <label for="floatfee">
+                    浮动管理费 :
+                </label>
+                <input id="floatfee" class="" type="text" name="floatfee"
+                    value="@prodForm("floatfee").valueOr("")" size="50" />
+                <span class="crudHelp">
+                </span>
+            </div>
+            <div class="crudField crud_text">
+                <label for="min">
+                    认购最低金额 :
+                </label>
+                <input id="min" class="" type="text" name="min"
+                    value="@prodForm("min").valueOr("")" size="50" />
+                <span class="crudHelp">
+                </span>
+            </div>
+            <div class="crudField crud_text">
+                <label for="appday">
+                    认购申请提交日 :
+                </label>
+                <input id="appday" class="" type="text" name="appday"
+                    value="@prodForm("appday").valueOr("")" size="50" />
+                <span class="crudHelp">
+                </span>
+            </div>
+            <div class="crudField crud_text">
+                <label for="rate">
+                    认购费率 :
+                </label>
+                <input id="rate" class="" type="text" name="rate"
+                    value="@prodForm("rate").valueOr("")" size="50" />
+                <span class="crudHelp">
+                </span>
+            </div>
+            <div class="crudField crud_text">
+                <label for="ransomday">
+                    赎回申请提交日 :
+                </label>
+                <input id="ransomday" class="" type="text" name="ransomday"
+                    value="@prodForm("ransomday").valueOr("")" size="50" />
+                <span class="crudHelp">
+                </span>
+            </div>
+            <div class="crudField crud_text">
+                <label for="ransomfee">
+                    赎回费 :
+                </label>
+                <input id="ransomfee" class="" type="text" name="ransomfee"
+                    value="@prodForm("ransomfee").valueOr("")" size="50" />
+                <span class="crudHelp">
+                </span>
+            </div>
+            <div class="crudField crud_text">
+                <label for="warn">
+                    预警止损机制 :
+                </label>
+                <input id="warn" class="" type="text" name="warn"
+                    value="@prodForm("warn").valueOr("")" size="50" />
+                <span class="crudHelp">
+                </span>
+            </div>
+            <div class="crudField crud_text">
+                <label for="beizhu">
+                    备注 :
+                </label>
+                <input id="beizhu" class="" type="text" name="beizhu"
+                    value="@prodForm("beizhu").valueOr("")" size="50" />
+                <span class="crudHelp">
+                </span>
+            </div>
+            @* 文件上传 *@
+            <div class="crudField">
+                <label for="picture">
+                    净值图 :
+                </label>
+                <input id="picture" type="file" name="picture"/>
+                <span class="crudHelp">推荐分辨率900 * 600</span>
+            </div>
+            @if(!prodForm("picture").valueOr("").isEmpty()){
+                <div class="">
+                    <img src="/picture/@prodForm("id").value()"
+                    style="position:relative; left:15%" alt="ERROR!">
+                </div>
+            }
+            <p class="crudButtons">
+                <input type="button" name="save" value="保存" id="btn-save"/>
+            </p>
+        </form>
+    </div>
+</div>
+</div>
+    <script type="text/javascript">
+        // 表单验证
+        $(function() {
+            // datepicker
+            $("#date").datepicker({
+                dateFormat: 'yy-mm-dd',
+                showOtherMonths: true,
+                changeMonth: true,
+                changeYear: true
+            });
+            $("#btn-save").click(function() {
+                if($("#name").val() == ""){
+                    $("#error-name p").html("请输入产品名称。");
+                    $("#error-name").show();
+                    $("#name").focus();
+                    return false;
+                }else if($("#date").val() == ""){
+                    $("#error-date p").html("请输入日期。").show();
+                    $("#date").focus();
+                    return false;
+                }
+                $("form").submit();
+            });
+        });
+    </script>
+}

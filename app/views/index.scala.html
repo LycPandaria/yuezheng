@@ -1,0 +1,251 @@
+@(latestPPs: List[PreviousProfit])
+
+@main("乐正资本有限公司", nav = "index") {
+
+    <div class="box">
+    <!------------banner-------------->
+    <div class="slider">
+        <ul class="slider-main">
+            <li class="slider-panel">
+                <img alt="Banner1" title="Banner1" src="@routes.Assets.at("images/index1.jpg")">
+            </li>
+            <li class="slider-panel">
+                <img alt="Banner2" title="Banner2" src="@routes.Assets.at("images/index2.jpg")">
+            </li>
+            <li class="slider-panel">
+                <img alt="Banner3" title="Banner3" src="@routes.Assets.at("images/index3.jpg")">
+            </li>
+            <li class="slider-panel">
+                <img alt="Banner4" title="Banner4" src="@routes.Assets.at("images/index4.jpg")">
+            </li>
+        </ul>
+        <div class="slider-extra">
+            <ul class="slider-nav">
+                <li class="slider-item">1</li>
+                <li class="slider-item">2</li>
+                <li class="slider-item">3</li>
+                <li class="slider-item">4</li>
+            </ul>
+            <div class="slider-page">
+                <a class="slider-pre" href="javascript:;;"><</a>
+                <a class="slider-next" href="javascript:;;">></a>
+            </div>
+        </div>
+    </div>
+
+	<div class="dw_hezi">
+    	<div class="tou">
+        	<div class="lef fl">
+            	<h2>
+                    <span class="fr">
+                		<a href="@routes.Application.companyIntro()" >
+                            MORE>>
+                    	</a>
+                    </span>
+                    公司简介
+                </h2>
+            </div>
+            <div class="mid fl">
+            	<h2><span class="fr">
+                		<a href="@routes.Application.investTarget()" >
+                			MORE>>
+                		</a>
+               	 	</span>投资理念</h2>
+            </div>
+        </div>
+        <!-- 公司简介 -->
+        <div class="zhong ov_h">
+        	<div class="zhong_l fl">
+                <p style="font-size: 14px;">&nbsp; &nbsp; &nbsp; &nbsp;北京乐正资本管理有限公司成立于2014年5月,是一家专注于二
+                    级市场投研的私募证券基金管理公司。乐正出自于《论语·子罕》，子曰：吾自卫反鲁，然后乐正，雅颂各得其所。孔子晚年专
+                    心于学，整理《诗经》，使《雅》《颂》各诗篇回归原来的乐章，恢复原来的乐谱，排除错误的音律，从而达到“乐正”。</p>
+                <br/>
+                <p style="font-size: 14px;">&nbsp; &nbsp; &nbsp; &nbsp;乐正资本致力于成为中国资本市场投资领域最全面、投资能力
+                    最专业、投资人最信赖的资本管理公司。公司创始人和投资团队核心成员具有近20年买方投资经验，对中国股票市场和期货市
+                    场有深刻理解，具备管理较大规模资金经验，过往所管理产品具备良好业绩记录。公司于2014年6月27日取得了《私募投资基
+                    金管理人登记证书》，成为中国证券投资基金协议注册公示的私募基金管理人，登记编号为P1003938。</p>
+                <br/>
+            </div>
+            <!-- 投资理念（写死的） -->
+            <div class="zhong_m fl">
+                <dl>
+                	<dt class="fl">
+                    	<h2>洞见：穿越牛熊 &nbsp; 洞悉股市</h2>
+                        <h3>行深自渡 &nbsp; &nbsp;悟道期货 &nbsp; &nbsp;理智投资 &nbsp; &nbsp;审时度势</h3>
+                    </dt>
+                </dl>
+                </br>
+                <dl>
+                    <dt class="fl">
+                        <h2>专业：资深团队 &nbsp; 协调配合</h2>
+                        <h3>二十余载 &nbsp; &nbsp;历经资本市场风云变幻 &nbsp; &nbsp;磨练稳健风格</h3>
+                    </dt>
+                </dl>
+                </br>
+                <dl>
+                    <dt class="fl">
+                        <h2>持续：多元工具 &nbsp; 立体作战</h2>
+                        <h3>三个维度 &nbsp; &nbsp;权衡资本市场价值与趋势构筑盈利空间</h3>
+                    </dt>
+                </dl>
+                </br>
+           </div>
+        </div>
+
+        <br/>
+        <br/>
+        <br/>
+
+        <div class="tou">
+            <div class="lef fl">
+                <h2><span class="fr">
+                		<a href="@routes.Application.products(1)" >
+                            MORE>>
+                        </a>
+                    </span>净值图</h2>
+            </div>
+            <div class="mid fl">
+                <h2><span class="fr">
+                		<a href="@routes.Application.products(1)" >
+                            MORE>>
+                        </a>
+                    </span>产品净值</h2>
+            </div>
+
+        </div>
+        <!-- 净值图-->
+        <div class="zhong ov_h">
+            <div class="zhong_l fl">
+                <img src="@routes.Assets.at("images/jingzhitu.png")" width="450" height="300"
+                        alt="根据规定暂时无法显示"/>
+            </div>
+            <!-- 最新净值 -->
+            <div class="zhong_m fl">
+                <table id="customers">
+                    <thead>
+                    <tr>
+                        <th ><span >名称</span></th>
+                        <th ><span >净值</span></th>
+                        <th ><span >初始净值</span></th>
+                        <th ><span >成立日期</span></th>
+                        <th ><span >更新日期</span></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @* 对最新的净值进行迭代 *@
+                    @for(pp <- latestPPs) {
+                    <tr>
+                        <td >
+                            <span >
+                                <a href="@routes.Application.products(pp.product.getID())"> @pp.product</a>
+                            </span>
+                        </td>
+                        <td ><span>@pp.per</span></td>
+                        <td ><span>1.0000</span></td>
+                        <td ><span >@pp.product.date.format("yyyy-MM-dd")</span></td>
+                        <td ><span >@pp.guzhiDate.format("yyyy-MM-dd")</span></td>
+                    </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End-->
+
+<!-- js-->
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var length = $(".slider-panel").length;
+        var currentIndex = 0;
+        var interval;
+        var hasStarted = false; //是否已经开始轮播
+        var t = 3000; // 轮播时间间隔
+        //将除了第一张图片隐藏
+        $(".slider-panel:not(:first)").hide();
+        //将第一个slider-item设为激活
+        $(".slider-item:first").addClass("slider-item-selected");
+        //隐藏向前，向后按钮
+        $(".slider-page").hide();
+        //鼠标上悬时显示向前，向后翻转按钮，停止滑动
+        $(".slider-panel, .slider-pre, .slider-next").hover(function () {
+            stop();
+            $(" .slider-page").show();
+        }, function () {    //鼠标离开时隐藏向前，向后图标，开始滑动
+            $(" .slider-page").hide();
+            start();
+        });
+        $(" .slider-item").hover(function () {
+            stop();
+            var preIndex = $(" .slider-item").filter(".slider-item-selected").index();  //获取正在滑动的页的index
+            currentIndex = $(this).index(); //选择当前上悬的图表的index
+            play(preIndex, currentIndex);
+        }, function () {
+            start();    //又开始滑动
+        });
+        $(" .slider-pre").click(function () {
+            pre();
+        });
+        $(" .slider-next").click(function () {
+            next();
+        });
+        /**
+         * 向前翻页
+         */
+        function pre() {
+            var preIndex = currentIndex;
+            currentIndex = (--currentIndex + length) % length;  //解决冲突
+            play(preIndex, currentIndex);
+        }
+         /**
+          * 向后翻页
+          */
+        function next(){
+             var preIndex = currentIndex;
+             currentIndex = ++currentIndex % length;
+             play(preIndex, currentIndex);
+         }
+        /**
+         * 从preIndex页翻到currentIndex页
+         * preIndex 整数，翻页的起始页
+         * currentIndex 整数，翻到的那页
+         */
+        function play(preIndex, currentIndex) {
+            //alert(preIndex + "   " + currentIndex);
+            $(" .slider-panel").eq(preIndex).fadeOut(500);  //之前图片淡出
+            $(" .slider-panel").eq(currentIndex).fadeIn(1000);  //当前图片淡入
+            $(" .slider-item").removeClass("slider-item-selected");    // 底部原点移除样式
+            $(" .slider-item").eq(currentIndex).addClass("slider-item-selected");   //对应底部原点加上样式
+        }
+        /**
+         * 开始轮播
+         */
+        function start() {
+            if(!hasStarted){
+                hasStarted = true;
+                interval = setInterval(next, t);
+            }
+        }
+        /**
+         * 停止轮播
+         */
+        function stop() {
+            clearInterval(interval);
+            hasStarted = false;
+        }
+        //开始轮播
+        start();
+
+        // 为表格增加样式
+        $("#customers tbody>tr:even").addClass("tr-even");
+        $("#customers tbody>tr:odd").addClass("tr-odd");
+        $(" #customers tbody>tr").click(function () {
+            $(this).addClass("tr-selected")
+                    .siblings().removeClass("tr-selected");
+        })
+    });
+</script>
+
+}

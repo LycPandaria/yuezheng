@@ -1,0 +1,65 @@
+@(prodMap : Map[Long, String], prodId:Long, page:Int)
+@admin("产品业绩--业绩列表", nav = "pps"){
+<div id="crud">
+    <div id="crudContent">
+        <div id="crudList" class="PreviousProfits">
+            <h2 id="crudListTitle">产品业绩</h2>
+            @* 搜索模块 *@
+            <div id="crudListSearch">
+                <form action="#" method="get" accept-charset="utf-8"
+                enctype="application/x-www-form-urlencoded" >
+                    <input type="text" name="search" value="" />
+                    <input type="submit" value="Search" />
+                </form>
+            </div>
+            @* 定位到产品*@
+            <div class="crudField">
+                <label for="product" style="text-align: left;width: auto">
+                    按产品查看：
+                </label>
+                <select id="product" name="product.id">
+                    <option value="@PreviousProfits.ALLPPS">所有</option>
+                    @for((prodId, prodName) <- prodMap){
+                        <option value="@prodId">@prodName</option>
+                    }
+                </select>
+            </div>
+            <div id="ajaxList">
+               @* 这里是用来通过ajax动态获取产品列表的 *@
+            </div>
+
+            <p id="crudListAdd">
+                <a href="@routes.PreviousProfits.newPP()">新增产品业绩</a>
+            </p>
+        </div>
+    </div>
+</div>
+    <script type="text/javascript">
+            $(function() {
+                //初始时候先用ajax获取一次数据，获取的是全部的产品业绩的“第一页”
+                listPPsByProdID(@prodId, @page);
+                //alert('page index=' + $("#page-index").val());
+                $("tbody>tr:odd").addClass("odd");
+                $("tbody>tr:even").addClass("even");
+
+                $("#product").change(function() {
+                    //每一次在下拉框中选择，都会触发一次获取数据
+                    //得到prodId对应产品的第一页业绩
+                    var prodId_selected = $(this).children("option:selected").val();
+                    listPPsByProdID(prodId_selected, 0);
+                });
+
+                function listPPsByProdID(prodId, page){
+                    // 根据下拉框选择的
+                    $.ajax({
+                        url: '/admin/pps/list_table?prodId='+prodId + '&page=' +page,
+                        type: "GET",
+                        success:function(results) {
+                            // 把获取得到的数据（一个产品业绩table）
+                            $("#ajaxList").html(results);
+                        }
+                    })
+                }
+            });
+    </script>
+}

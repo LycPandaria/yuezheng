@@ -1,0 +1,110 @@
+@(prodMap: Map[Long, String], product: Product)
+@import views.html.Product.navigation
+@navigation(prodMap, product) {
+    <div>
+        <div class="contentlist products_type01">
+            <div class="prodiv">
+                <div class="promenu" style=" margin-left:20px ;">
+                    <a href="@routes.Application.products(product.getID())" class="line5">产品简介</a></div>
+                <div class="promenu2 products_type02" >历史业绩</div>
+                <div class="promenu products_type04">
+                    <a href="@routes.Application.productsPic(product.getID())" class="line5">走势图</a></div>
+                <div class="promenu products_type05">
+                    <a href="@routes.Application.productsLC(product.getID())" class="line5">认购流程</a></div>
+            </div>
+            <div id="ajaxTable">
+            </div>
+            <div id="chart" style="width: 700px;height:500px;">
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    $(function() {
+        //初始时候先用ajax获取一次数据，获取的是全部的产品业绩的“第一页”
+        listPPsByProdID(@product.id, 0);
+        $("#ajaxTable tbody>tr:odd").addClass("odd");
+        $("#ajaxTable tbody>tr:even").addClass("even");
+        showChart(@product.id);
+
+        function showChart(prodId) {
+            // 基于准备好的dom，初始化echarts实例
+            var myChart = echarts.init(document.getElementById('chart'));
+
+            // 指定图表的配置项和数据
+            var option = {
+                title: {
+                    text: '折线图展示'
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data:['产品业绩']
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
+                },
+                xAxis: {
+                    data: []
+                },
+                yAxis: {
+                    type: 'value',
+                    min: '0.9',
+                    max: '3.5',
+                    splitNumber: 20
+                },
+                series: [
+                    {
+                        name:'产品业绩',
+                        type:'line',
+                        stack: '总量',
+                        data:[]
+                    }
+                ]
+            };
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+
+            $.ajax({
+                url: '/product/'+ prodId + '/yeji/data_json',
+                type: 'GET',
+                dataType: 'json',
+                success: function(results) {
+                    myChart.setOption({
+                        xAxis: {
+                            type: 'category',
+                            boundaryGap: false,
+                            data: results.dateList
+                        },
+                        series: [{
+                            // 根据名字对应到相应的系列
+                            name: '产品业绩',
+                            data: results.perList
+                        }]
+                    });
+                }
+            });
+        }
+
+        function listPPsByProdID(prodId, page){
+            // 根据下拉框选择的
+            $.ajax({
+                url: '/product/'+prodId+'/yeji/'+page,
+                type: "GET",
+                success:function(results) {
+                    // 把获取得到的数据（一个产品业绩table）
+                    $("#ajaxTable").html(results);
+                }
+            })
+        }
+    });
+    </script>
+    }

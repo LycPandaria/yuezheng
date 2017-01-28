@@ -1,0 +1,47 @@
+@* company_intro Template File *@
+@()
+@main("公司简介--乐正资本有限公司", nav = "aboutus") {
+<!--关于我们-->
+<!-- 公司简介页面 -->
+<!--网页上部图片-->
+<div class="gywm_box_zj" align="center"></div>
+
+<div class="gywm_box2_zj w ov_h">
+	<div class="gywm_box2_l_zj fl">
+    	<div class="h_beijing">
+    		<h3>关于我们 <span>ABOUT US</span></h3>
+     	</div>
+      	<div>
+            <ul>
+				<li class="cur"><a href="@routes.Application.companyIntro()">公司简介</a></li>
+				<li ><a href="@routes.Application.advantages()" >特点与优势</a></li>
+              	<li><a href="@routes.Application.group()" >核心团队</a></li>
+            </ul>
+        </div>
+		<p>
+			<a href="@routes.Application.contactUs()">
+				<img src="@routes.Assets.at("images/contactUs.jpg")"  width="243" height="141">
+			</a>
+		</p>
+    </div>
+    <div class="gywm_box2_r_zj fr">
+   	  	<div class="bhk">
+			<h3 class="fl">公司简介</h3>
+        	<div class="fr jj_you"><span>当前位置：</span><a href="@routes.Application.index()" >首页</a> >
+				<a href="@routes.Application.companyIntro()" >关于我们</a> > 公司简介
+			</div>
+      	</div>
+		<div class="rongqi"style="color:#666666;font-family:'Microsoft YaHei';">
+			<p style="font-size: 14px;">&nbsp; &nbsp; &nbsp; &nbsp;北京乐正资本管理有限公司成立于2014年5月,是一家专注于二级市场投研的私募证券基金管理公司。乐正出自于《论语·子罕》，子曰：吾自卫反鲁，然后乐正，雅颂各得其所。孔子晚年专心于学，
+				整理《诗经》，使《雅》《颂》各诗篇回归原来的乐章，恢复原来的乐谱，排除错误的音律，从而达到“乐正”。</p>
+			<br/>
+			<p style="font-size: 14px;">&nbsp; &nbsp; &nbsp; &nbsp;乐正资本致力于成为中国资本市场投资领域最全面、投资能力最专业、投资人最信赖的资本管理公司。公司创始人和投资团队核心成员具有近20年买方投资经验，对中国股票市场和期货市场有深刻理解
+				，具备管理较大规模资金经验，过往所管理产品具备良好业绩记录。公司于2014年6月27日取得了《私募投资基金管理人登记证书》，成为中国证券投资基金协议注册公示的私募基金管理人，登记编号为P1003938。</p>
+			<br/>
+			<p style="font-size: 14px;">&nbsp; &nbsp; &nbsp; &nbsp;公司核心投研人员从业20余年，曾在大成基金，人保资产管理公司，长盛基金，中信证券等国内大型专业资产管理机构认知。投研团队有着丰富的国内市场证券投资经验和对中国市场的
+			全面深刻的理解。基金经理全部具有多年证券从业经验,坚持研究的独立性和前瞻性,坚持稳健理性的投资文化和理念。严格遵守投资纪律和流程，致力于为基金持有人创造稳健的可持续的投资回报。</p>
+			<br/>
+		</div>
+    </div>
+</div>
+}

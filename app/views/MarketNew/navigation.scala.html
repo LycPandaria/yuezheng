@@ -1,0 +1,28 @@
+@(content : Html)
+@main("市场资讯--乐正资本有限公司", nav = "idea"){
+    <!--新闻资讯-->
+    <!-- 市场资讯页面 -->
+    <div class="gywm_box_zj" align="center" style="background: url('@routes.Assets.at("images/2.jpg")')">
+    </div>
+
+    <div class="gywm_box2_zj w ov_h">
+        <div class="gywm_box2_l_zj fl">
+            <div class="h_beijing">
+                <h3>新闻资讯 <span>idea </span></h3>
+            </div>
+            <div>
+                <ul>
+                    <li ><a href="@routes.Application.companyNews()" >乐正新闻</a></li>
+                    <li class="cur"><a href="@routes.Application.marketNews()" >市场资讯</a></li>
+                </ul>
+            </div>
+            <p><a href="@routes.Application.contactUs()">
+                <img src="@routes.Assets.at("images/contactUs.jpg")"  width="243" height="141"></a>
+            </p>
+        </div>
+
+        @* 显示具体内容 *@
+        @content
+
+    </div>
+}

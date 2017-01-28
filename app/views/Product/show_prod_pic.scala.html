@@ -1,0 +1,25 @@
+@(prodMap: Map[Long, String], product: Product)
+@import views.html.Product.navigation
+@navigation(prodMap, product){
+    <div>
+        <div class="contentlist products_type01">
+            <div class="prodiv">
+                <div class="promenu" style=" margin-left:20px;">
+                    <a href="@routes.Application.products(product.getID())" class="line5">产品简介</a></div>
+                <div class="promenu products_type02" >
+                    <a href="@routes.Application.productsYJ(product.getID())" class="line5">历史业绩</a>
+                </div>
+                <div class="promenu2 products_type04">走势图</div>
+                <div class="promenu products_type05">
+                    <a href="@routes.Application.productsLC(product.getID())" class="line5"> 认购流程</a></div>
+            </div>
+            <p id="productName">@product.name</p>
+            @if(product.picture != null){
+                <div class="">
+                    <img src="/picture/@product.id" alt="ERROR!">
+                </div>
+            }
+        </div>
+    </div>
+
+}

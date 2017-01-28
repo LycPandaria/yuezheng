@@ -1,0 +1,78 @@
+@(currentPage : com.avaje.ebean.Page[Message])
+@admin("留言管理", nav = "messages"){
+    <script>
+        function del(id){
+            if(confirm("请问你确定要删掉这个留言吗？")){
+                $.ajax({
+                    url:'/admin/messages/delete?id='+id,
+                    type: 'DELETE',
+                    success: function() {
+                        location.reload();
+                    }
+                })
+            }
+        }
+    </script>
+<div id="crud">
+    <div id="crudContent">
+        <div id="crudList">
+            <h2 id="crudListTitle">游客留言</h2>
+            <div id="crudListSearch">
+                <form action="#" method="get" accept-charset="utf-8"
+                    enctype="application/x-www-form-urlencoded" >
+                    <input type="text" name="search" value="" />
+                    <input type="submit" value="Search" />
+                </form>
+            </div>
+
+            <div id="crudListTable">
+                <table>
+                    <thead>
+                        <th>联系方式</th>
+                        <th>留言内容</th>
+                        <th>留言日期</th>
+                        <th></th>
+                    </thead>
+                    <tbody>
+                        @for(msg <- currentPage.getList){
+                            <tr>
+                                <td> @msg.email</td>
+                                <td> @msg.content</td>
+                                <td width="150px"> @msg.msgDate.format("yyyy-MM-dd")</td>
+                                <td class="td-delete" width="50px">
+                                    <a id="a-delete" onclick="del('@msg.id')">
+                                        <i class="glyphicon glyphicon-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div id="pagination">
+                <ul>
+                    @if(currentPage.hasPrev) {
+                        <li class="prev"><a href="@routes.Messages.list(currentPage.getPageIndex-1)">&larr;</a></li>
+                    } else {
+                        <li class="prev disabled">&larr;</li>
+                    }
+                    <li class="current">
+                    @currentPage.getDisplayXtoYofZ(" - "," / ")
+                    </li>
+                    @if(currentPage.hasNext) {
+                        <li class="next"><a href="@routes.Messages.list(currentPage.getPageIndex+1)">&rarr;</a></li>
+                    } else {
+                        <li class="next disabled">&rarr;</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+}
+<script type="text/javascript">
+    $(function() {
+        $("tbody>tr:odd").addClass("odd");
+        $("tbody>tr:even").addClass("even");
+    });
+</script>

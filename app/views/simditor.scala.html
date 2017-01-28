@@ -1,0 +1,25 @@
+@()
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/simditor.css")">
+
+        @* 引用jquery *@
+        <script type="text/javascript" src="@routes.Assets.at("javascripts/jquery.min.js")"></script>
+        @* 文本编辑插件--simditor*@
+        <script type="text/javascript" src="@routes.Assets.at("javascripts/module.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.at("javascripts/hotkeys.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.at("javascripts/uploader.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.at("javascripts/simditor.js")"></script>
+    </head>
+    <body>
+        <textarea id="editor" placeholder="Balabala" autofocus></textarea>
+        <script>
+            $(function() {
+                var editor = new Simditor({
+                    textarea: $("#editor")
+                })
+            })
+        </script>
+    </body>
+</html>

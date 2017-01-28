@@ -1,0 +1,41 @@
+@* advantages Template File *@
+@()
+
+@main("特点与优势--乐正资本有限公司", nav = "aboutus") {
+	<!--关于我们-->
+<!-- 特点与优势页面 -->
+<!--网页上部图片-->
+<div class="gywm_box_zj" align="center"></div>
+
+<div class="gywm_box2_zj w ov_h">
+    <div class="gywm_box2_l_zj fl">
+        <div class="h_beijing">
+            <h3>关于我们 <span>about us</span></h3>
+        </div>
+        <div>
+            <ul>
+                <li ><a href="@routes.Application.companyIntro()">公司简介</a></li>
+                <li class="cur"><a href="@routes.Application.advantages()" >特点与优势</a></li>
+                <li><a href="@routes.Application.group()" >核心团队</a></li>
+            </ul>
+            <p>
+                <a href="@routes.Application.contactUs()">
+                    <img src="@routes.Assets.at("images/contactUs.jpg")"  width="243" height="141">
+                </a>
+            </p>
+        </div>
+    </div>
+    <div class="gywm_box2_r_zj fr">
+        <div class="bhk">
+            <h3 class="fl">特点与优势</h3>
+            <div class="fr jj_you"><span>当前位置：</span><a href="@routes.Application.index()" >首页</a> >
+                <a href="@routes.Application.companyIntro()" >关于我们</a> > 特点与优势
+            </div>
+        </div>
+        <div class="rongqi"style="color:#666666;font-family:'Microsoft YaHei';">
+            <p style="font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp;乐正资本宏观混合对冲基金  专注于二级市场，通过股票、商品期货和金融衍生品等资产投资，把握趋势，为您实现资产的稳健持续增值。得益于严谨的投资研究和宏观对冲的管理策略，通过商品期货、金融衍生品、股票等配置，有效规避市场系统性风险，在市场震荡或下行过程中，仍可取得收益。</p>
+            <br/>
+        </div>
+    </div>
+</div>
+}

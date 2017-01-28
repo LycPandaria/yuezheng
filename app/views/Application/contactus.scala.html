@@ -1,0 +1,86 @@
+@* contactus Template File *@
+@()
+@main("联系我们--乐正资本有限公司", nav = "aboutus"){
+	<!--关于我们-->
+<!-- 联系我们页面 -->
+<!--网页上部图片-->
+<div class="gywm_box_zj" align="center"></div>
+
+<div class="gywm_box2_zj w ov_h">
+    <div class="gywm_box2_l_zj fl">
+        <div class="h_beijing">
+            <h3>关于我们 <span>ABOUT US</span></h3>
+        </div>
+        <div>
+            <ul>
+                <li ><a href="@routes.Application.companyIntro()">公司简介</a></li>
+                <li ><a href="@routes.Application.advantages()" >特点与优势</a></li>
+                <li><a href="@routes.Application.group()" >核心团队</a></li>
+                <li class="cur"><a href="@routes.Application.contactUs()" >联系我们</a></li>
+            </ul>
+        </div>
+        <p>
+            <a href="@routes.Application.contactUs()">
+                <img src="@routes.Assets.at("images/contactUs.jpg")"  width="243" height="141">
+            </a>
+        </p>
+    </div>
+    <div class="gywm_box2_r_zj fr">
+        <div class="bhk">
+            <h3 class="fl">联系我们</h3>
+            <div class="fr jj_you"><span>当前位置：</span><a href="@routes.Application.index()" >首页</a> >
+                <a href="@routes.Application.companyIntro()" >关于我们</a> > 联系我们
+            </div>
+        </div>
+        <div>
+            <div class="rongqi"style="color:#666666;font-family:'Microsoft YaHei';">
+                <br/>
+                <table border="0" cellpadding="1" cellspacing="1" style="width: 100%;">
+                    <tr>
+                        <td width="5%">
+                            <img alt="" src="@routes.Assets.at("images/local.jpg")"  style="width: 60px; height: 60px; margin-right: 15px;">
+                        </td>
+                        <td align="left" valign="top" width="95%">
+                            <p>&nbsp;</p>
+                            <p style="font-size: 14px;"><strong>地址：北京市朝阳区工人体育场北路甲6号中宇大厦20层</strong></p>
+                        </td>
+                    </tr>
+                </table>
+                <table border="0" cellpadding="1" cellspacing="1" style="width: 100%;">
+                    <tr>
+                        <td width="5%">
+                            <img alt="" src="@routes.Assets.at("images/email.jpg")"  style="width: 60px; height: 60px; margin-right: 15px;">
+                        </td>
+                        <td align="left" valign="top" width="95%">
+                            <p>&nbsp;</p>
+                            <p style="font-size: 14px;"><strong>邮箱：yzzb@@rhythmcap.com</strong></p>
+                        </td>
+                    </tr>
+                </table>
+                <table border="0" cellpadding="1" cellspacing="1" style="width: 100%;">
+                    <tr>
+                        <td width="5%">
+                            <img alt="" src="@routes.Assets.at("images/phone.jpg")"  style="width: 60px; height: 60px; margin-right: 15px;">
+                        </td>
+                        <td align="left" valign="top" width="95%">
+                            <p>&nbsp;</p>
+                            <p style="font-size: 14px;"><strong>电话：010-85236998</strong></p>
+                        </td>
+                    </tr>
+                </table>
+                <table border="0" cellpadding="1" cellspacing="1" style="width: 100%;">
+                    <tr>
+                        <td width="5%">
+                            <img alt="" src="@routes.Assets.at("images/cellphone.jpg")" style="width: 60px; height: 60px; margin-right: 15px;">
+                        </td>
+                        <td align="left" valign="top" width="95%">
+                            <p>&nbsp;</p>
+                            <p style="font-size: 14px;"><strong>手机：158-0166-6962</strong></p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+}

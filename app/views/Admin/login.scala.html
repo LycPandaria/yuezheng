@@ -1,0 +1,49 @@
+@(loginForm: Form[controllers.Admin.Login])
+@views.html.admin("后台登陆"){
+
+    <div id="login">
+        <h1>登陆</h1>
+        <form action="@routes.Admin.authenticate()" method="post" id="login-form">
+            <!-- 错误提示 -->
+            @if(flash.containsKey("invalid")){
+                <div class="error">
+            @flash.get("invalid")
+                </div>
+            }
+            @if(flash.containsKey("error")){
+                <div class="error">
+            @flash.get("error")
+                </div>
+            }
+            <div class="error" id="error-username" style="display: none">请输入用户名</div>
+            <div class="error" id="error-password" style="display: none">请输入密码</div>
+            <p id="username-field">
+            <label for="username">用户名:</label>
+            <input type="text" name="username" id="username" value="" />
+            </p>
+            <p id="password-field">
+            <label for="password">密码:</label>
+            <input type="password" name="password" id="password" value="" />
+            </p>
+            <p id="signin-field">
+            <input type="button" id="signin" value="登陆" />
+            </p>
+        </form>
+    </div>
+    <script type="text/javascript">
+        $("#signin").click(function() {
+            if($("#username").val() == ""){
+                $("#error-username").show();
+                $("#username").focus();
+                return false;   //不提交表单
+            }
+            if($("#password").val() == ""){
+                $("#error-password").show();
+                $("#password").focus();
+                return false;
+            }
+            $("#login-form").submit();
+        });
+    </script>
+
+}

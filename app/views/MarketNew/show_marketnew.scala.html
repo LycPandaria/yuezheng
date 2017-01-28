@@ -1,0 +1,30 @@
+@(marketNew: MarketNew)
+@views.html.MarketNew.navigation {
+    <div class="gywm_box2_r_zj fr">
+        <div class="bhk">
+            <h3 class="fl">@marketNew.title</h3>
+            <div class="fr jj_you">
+                <span>当前位置：</span><a href="@routes.Application.index()" >首页</a> >
+                <a href="@routes.Application.companyNews()" >新闻资讯</a> >
+                <a href="@routes.Application.marketNews()">市场资讯</a>
+            </div>
+        </div>
+        <H1 style="padding: 0px ; MARGIN: 0px ; WORD-SPACING: 0px ; font-family:'Microsoft YaHei' ; TEXT-TRANSFORM: none ; COLOR: rgb(0,0,0) ; TEXT-INDENT: 0px ; PADDING-TOP: 0px ; WHITE-SPACE: normal ; LETTER-SPACING: normal ; orphans: 2 ; widows: 2 ; webkit-text-size-adjust: auto ; webkit-text-stroke-width: 0px" align=center>
+        @marketNew.title</H1>
+        <P style="PADDING-RIGHT: 0px ; PADDING-LEFT: 0px ; PADDING-BOTTOM: 0px ; MARGIN: 0px ; WORD-SPACING: 0px ; font-family:'Microsoft YaHei' ; TEXT-TRANSFORM: none ; COLOR: rgb(0,0,0) ; TEXT-INDENT: 0px ; PADDING-TOP: 0px ; WHITE-SPACE: normal ; LETTER-SPACING: normal ; orphans: 2 ; widows: 2 ; webkit-text-size-adjust: auto ; webkit-text-stroke-width: 0px" align=center>
+            <SPAN class=gray style="PADDING-RIGHT: 10px ; WORD-SPACING: 0px ; FONT: 14px 宋体 ; TEXT-TRANSFORM: none ; COLOR: rgb(134,134,134) ; TEXT-INDENT: 0px ; WHITE-SPACE: normal ; LETTER-SPACING: normal ; orphans: 2 ; widows: 2 ; webkit-text-size-adjust: auto ; webkit-text-stroke-width: 0px">
+            @marketNew.datenews.format("yyyy-MM-dd")</SPAN>
+            <SPAN style="DISPLAY: inline! important ; FLOAT: none ; WORD-SPACING: 0px ; FONT: 12px 宋体 ; TEXT-TRANSFORM: none ; COLOR: rgb(0,0,0) ; TEXT-INDENT: 0px ; WHITE-SPACE: normal ; LETTER-SPACING: normal ; orphans: 2 ; widows: 2 ; webkit-text-size-adjust: auto ; webkit-text-stroke-width: 0px">
+                <SPAN class=Apple-converted-space>&nbsp;</SPAN>
+            </SPAN>
+        </P>
+        <P style="PADDING-RIGHT: 0px ; PADDING-LEFT: 0px ; PADDING-BOTTOM: 0px ; MARGIN: 0px ; WORD-SPACING: 0px ; font-family:'Microsoft YaHei' ; TEXT-TRANSFORM: none ; COLOR: rgb(0,0,0) ; TEXT-INDENT: 0px ; PADDING-TOP: 0px ; WHITE-SPACE: normal ; LETTER-SPACING: normal ; orphans: 2 ; widows: 2 ; webkit-text-size-adjust: auto ; webkit-text-stroke-width: 0px" align=center>
+            <SPAN class=gray style="PADDING-RIGHT: 10px ; WORD-SPACING: 0px ; FONT: 14px 宋体 ; TEXT-TRANSFORM: none ; COLOR: rgb(134,134,134) ; TEXT-INDENT: 0px ; WHITE-SPACE: normal ; LETTER-SPACING: normal ; orphans: 2 ; widows: 2 ; webkit-text-size-adjust: auto ; webkit-text-stroke-width: 0px">
+            @marketNew.source</SPAN>
+            <SPAN style="DISPLAY: inline! important ; FLOAT: none ; WORD-SPACING: 0px ; FONT: 12px 宋体 ; TEXT-TRANSFORM: none ; COLOR: rgb(0,0,0) ; TEXT-INDENT: 0px ; WHITE-SPACE: normal ; LETTER-SPACING: normal ; orphans: 2 ; widows: 2 ; webkit-text-size-adjust: auto ; webkit-text-stroke-width: 0px">
+                <SPAN class=Apple-converted-space>&nbsp;</SPAN>
+            </SPAN>
+        </P>
+        @Html(marketNew.content)
+    </div>
+}

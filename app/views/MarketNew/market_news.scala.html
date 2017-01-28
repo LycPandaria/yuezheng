@@ -1,0 +1,25 @@
+@* market_news Template File *@
+@(marketNews: List[MarketNew])
+@views.html.MarketNew.navigation {
+    <div class="gywm_box2_r_zj fr">
+        <div class="bhk">
+            <h3 class="fl">市场资讯</h3>
+            <div class="fr jj_you">
+                <span>当前位置：</span><a href="@routes.Application.index()" >首页</a> >
+                <a href="@routes.Application.marketNews()" >新闻资讯</a> > 市场资讯
+            </div>
+        </div>
+        <div>
+            <div class="rongqi">
+            @for(marketNew <- marketNews) {
+                <dl class="ov_h" >
+                    <dt class="fl">
+                        <a href="@routes.Application.showMarketNews(marketNew.getID())"><h2>@marketNew.title</h2></a>
+                    <h3>摘要：@marketNew.brief...</h3>
+                    </dt>
+                </dl>
+            }
+            </div>
+        </div>
+    </div>
+}

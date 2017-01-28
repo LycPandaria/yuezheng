@@ -1,0 +1,63 @@
+@(currentPage: com.avaje.ebean.Page[PreviousProfit], prodId:Long)
+<table width="90%" border="0" align="center" cellpadding="1" cellspacing="1" bgcolor="#E3E3E3">
+    <tr>
+        <td width="125" height="30" bgcolor="E3EFF8"><div align="center" class="style00"><strong>
+            估值日</strong></div></td>
+        <td bgcolor="#E3EFF8"><div align="center" class="style00"><strong>单元净值（元）</strong></div></td>
+        <td bgcolor="#E3EFF8"><div align="center" class="style00"><strong>沪深300指数</strong></div></td>
+        <td bgcolor="#E3EFF8"><div align="center" class="style00"><strong>净值增长</strong></div></td>
+        <td bgcolor="#E3EFF8"><div align="center" class="style00"><strong>净值累计变动(%)</strong></div></td>
+        <td bgcolor="#E3EFF8"><div align="center" class="style00"><strong>
+            沪深300增长率(%)</strong></div></td>
+    </tr>
+    @for(profit <- currentPage.getList()) {
+        <tr>
+            <td width="125" height="30"><div align="center">@profit.guzhiDate.format("yyyy-MM-dd")</div></td>
+            <td width="113" ><div align="center">@profit.per</div></td>
+            <td width="137"><div align="center">@profit.hs_point</div></td>
+            <td width="104"><div align="center">@profit.incRate</div></td>
+            <td width="121"><div align="center">@profit.floatChange</div></td>
+            <td width="105"><div align="center">@profit.hs_inc</div></td>
+        </tr>
+    }
+</table>
+<div id="pagination">
+    <ul>
+        @if(currentPage.hasPrev) {
+            <li><button class="prev">&larr;</button></li>
+        } else {
+            <li><button class="prev disabled">&larr;</button></li>
+        }
+        <li class="current">
+        @currentPage.getDisplayXtoYofZ(" - "," / ")
+        </li>
+        @if(currentPage.hasNext) {
+            <li><button class="next">&rarr;</button></li>
+        } else {
+            <li ><button class="next disabled">&rarr;</button></li>
+        }
+    </ul>
+</div>
+<script>
+        $(function() {
+            $("#ajaxTable tbody>tr:odd").addClass("odd");
+            $("#ajaxTable tbody>tr:even").addClass("even");
+            $("#pagination .disabled").attr("disabled","disabled");
+            $("#pagination .prev").click(function() {
+                listPPsByProdID(@prodId, @currentPage.getPageIndex-1);
+            });
+            $("#pagination .next").click(function() {
+                listPPsByProdID(@prodId, @currentPage.getPageIndex+1);
+            });
+            function listPPsByProdID(prodId, page){
+                $.ajax({
+                    url: '/product/'+prodId+'/yeji/'+page,
+                    type: "GET",
+                    success:function(results) {
+                        // 把获取得到的数据（一个产品业绩table）
+                        $("#ajaxTable").html(results);
+                    }
+                })
+            }
+        })
+</script>

@@ -1,0 +1,121 @@
+@(msgForm: Form[Message])
+@main("留言中心--乐正资本有限公司", nav = "message"){
+<!--留言中心-->
+<!-- 留言给我们页面 -->
+<div class="gywm_box_zj" align="center" style="background: url('@routes.Assets.at("images/5.jpg")')">
+</div>
+
+<div class="gywm_box2_zj w ov_h">
+    <div class="gywm_box2_l_zj fl">
+        <div class="h_beijing">
+            <h3>留言中心 <span>The message</span></h3>
+        </div>
+        <div>
+            <ul>
+                <li class="cur"><a href="#">留言给我们</a></li>
+            </ul>
+        </div>
+        <p><a href="@routes.Application.contactUs()">
+            <img src="@routes.Assets.at("images/contactUs.jpg")"  width="243" height="141"></a>
+        </p>
+    </div>
+    <div class="gywm_box2_r_zj fr">
+        <div class="bhk">
+            <h3 class="fl">留言给我们</h3>
+            <div class="fr jj_you">
+                <span>当前位置：</span><a href="@routes.Application.index()" >首页</a> >
+                <a href="#" >留言中心</a> > 留言给我们
+            </div>
+        </div>
+        <div>
+            <div class="lygwm">
+                <!-- 错误提示 -->
+                @if(flash.containsKey("success")){
+                    <div class="success">
+                        @flash.get("success")
+                    </div>
+                }
+                @if(flash.containsKey("error")){
+                    <div class="error">
+                        @flash.get("error")
+                    </div>
+                }
+                <form action="@routes.Messages.saveMsg()" id="msgform" method="post">
+                    <ul>
+                        <li>
+                            <input name="email" id="email" type="text"
+                                value="@msgForm("email").valueOr("您的常用联系方式(E-mail或者手机)")" class="required">
+                        </li>
+                    </ul>
+                    <div class="fsa">
+                        <textarea name="content" id="content"
+                            class="required">您的需求描述？(Your requirement description)</textarea>
+                    </div>
+                    @*
+                    <div>
+                        <p><!-- 验证码 -->
+                            <label>请输入如下图片中的数字和字母: </label>
+                            <br />
+                            <img src="@{Application.captcha(randomID)}" />
+                            <br />
+                            <input type="text" name="code" id="code" size="18" value="" />
+                            <input type="hidden" name="randomID" value="${randomID}" />
+                        </p>
+                    </div>
+                    *@
+                    <div class="tijia_ly">
+                        <input type="submit" value="提交留言" id="submit-msg">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" charset="utf-8">
+        $(function() {
+            var $email = $("#email");
+            var $content = $("#content");
+            // Expose the form
+            $('form').click(function() {
+                $('form').expose({api: true}).load();
+            });
+
+            // If there is an error, focus to form
+            if($('form .error').size()) {
+                $('form').expose({api: true, loadSpeed: 0}).load();
+                $('form input[type=text]').get(0).focus();
+            }
+            
+            $email.focus(function() {
+                if($email.val() == "您的常用联系方式(E-mail或者手机)"){
+                    $email.val("");
+                }
+            });
+            $email.blur(function() {
+                if($email.val() == ""){
+                    $email.val("您的常用联系方式(E-mail或者手机)")
+                }
+            });
+
+            $content.focus(function() {
+                if($content.val() == "您的需求描述？(Your requirement description)"){
+                    $content.val("");
+                }
+            });
+            $content.blur(function() {
+                if($content.val() == ""){
+                    $content.val("您的需求描述？(Your requirement description)");
+                }
+            });
+
+            $("#submit-msg").click(function() {
+                if($email.val() == "您的常用联系方式(E-mail或者手机)"){
+                    $email.val("");
+                }
+                if($content.val() == "您的需求描述？(Your requirement description)"){
+                    $content.val("");
+                }
+            });
+        });
+</script>
+}

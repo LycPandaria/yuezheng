@@ -1,0 +1,116 @@
+@(prodMap: Map[Long, String], product: Product)
+@views.html.Product.navigation(prodMap, product) {
+    <!-- 右边 -->
+    <div>
+        <div class="contentlist products_type01">
+            <div class="prodiv">
+                <div class="promenu2" style=" margin-left:20px ;">产品简介</div>
+                <div class="promenu products_type02">
+                    <a href="@routes.Application.productsYJ(product.getID())" class="line5">历史业绩</a>
+                </div>
+                <div class="promenu products_type04">
+                    <a href="@routes.Application.productsPic(product.getID())" class="line5">走势图</a>
+                </div>
+                <div class="promenu products_type05">
+                    <a href="@routes.Application.productsLC(product.getID())" class="line5">认购流程</a>
+                </div>
+            </div>
+            <table width="100%" border="0" align="center" cellpadding="1" cellspacing="1" bgcolor="#E3E3E3">
+                <tr>
+                    <td width="148" height="30" style="PADDING-LEFT: 20px">产品名称：</td>
+                    <td style="PADDING-LEFT: 20px">@product.name</td>
+                </tr>
+                <tr>
+                    <td width="148" height="30" style="PADDING-LEFT: 20px">产品类型：</td>
+                    <td width="569" style="PADDING-LEFT: 20px">@product.getTYPE()</td>
+                </tr>
+                <tr>
+                    <td width="148" height="30"  style="PADDING-LEFT: 20px">投资顾问</td>
+                    <td width="569"  style="PADDING-LEFT: 20px">@product.adviser</td>
+                </tr>
+                <tr>
+                    <td width="148" height="30" style="PADDING-LEFT: 20px">托管人：</td>
+                    <td width="569"  style="PADDING-LEFT: 20px">@product.bank</td>
+                </tr>
+                <tr>
+                    <td width="148" height="30"  style="PADDING-LEFT: 20px">证券经纪人(证券公司)：</td>
+                    <td width="569"  style="PADDING-LEFT: 20px">@product.company</td>
+                </tr>
+                <tr>
+                    <td width="148" height="30"  style="PADDING-LEFT: 20px">投资经理：</td>
+                    <td width="569" style="PADDING-LEFT: 20px">@product.manager</td>
+                </tr>
+                <tr>
+                    <td width="148" height="30" style="PADDING-LEFT: 20px">成立日期：</td>
+                    <td width="569"  style="PADDING-LEFT: 20px">@product.date.format("yyyy-MM-dd")</td>
+                </tr>
+                <tr>
+                    <td width="148" height="30" style="PADDING-LEFT: 20px">初始成立规模：</td>
+                    <td width="569"style="PADDING-LEFT: 20px">@product.init</td>
+                </tr>
+                <tr>
+                    <td width="148" height="30"  style="PADDING-LEFT: 20px">封闭期 ：</td>
+                    <td width="569"  style="PADDING-LEFT: 20px">@product.lockup</td>
+                </tr>
+                <tr>
+                    <td width="148" height="30"  style="PADDING-LEFT: 20px">存续期：</td>
+                    <td width="569" style="PADDING-LEFT: 20px">@product.xucun</td>
+                </tr>
+                <tr>
+                    <td width="148" height="30" style="PADDING-LEFT: 20px">开放日：</td>
+                    <td width="569" style="PADDING-LEFT: 20px">@product.openday</td>
+                </tr>
+                <tr>
+                    <td width="148" height="30" style="PADDING-LEFT: 20px">估值基准日：</td>
+                    <td width="569" style="PADDING-LEFT: 20px">@product.guzhiday</td>
+                </tr>
+                <tr>
+                    <td width="148" height="30" style="PADDING-LEFT: 20px">托管费：</td>
+                    <td width="569" style="PADDING-LEFT: 20px">@product.trusteefee</td>
+                </tr>
+                <tr>
+                    <td width="148" height="30" style="PADDING-LEFT: 20px"> 行政服务费：</td>
+                    <td width="569" style="PADDING-LEFT: 20px">@product.administrativefee</td>
+                </tr>
+                <tr>
+                    <td width="148" height="30" style="PADDING-LEFT: 20px">浮动管理费：</td>
+                    <td width="569" style="PADDING-LEFT: 20px">@product.floatfee</td>
+                </tr>
+                <tr>
+                    <td width="148" height="30" style="PADDING-LEFT: 20px">认(申)购最低金额：</td>
+                    <td width="569" style="PADDING-LEFT: 20px">@product.min</td>
+                </tr>
+                <tr>
+                    <td width="148" height="30" style="PADDING-LEFT: 20px">认(申)购申请提交日：</td>
+                    <td width="569" style="PADDING-LEFT: 20px">@product.appday</td>
+                </tr>
+                <tr>
+                    <td width="148" height="30"  style="PADDING-LEFT: 20px">认(申)购费率：</td>
+                    <td width="569" style="PADDING-LEFT: 20px">@product.rate</td>
+                </tr>
+                <tr>
+                    <td width="148" height="30"  style="PADDING-LEFT: 20px">赎回申请提交日：</td>
+                    <td width="569"  style="PADDING-LEFT: 20px">@product.ransomday</td>
+                </tr>
+                <tr>
+                    <td width="148" height="30"  style="PADDING-LEFT: 20px">赎回费：</td>
+                    <td width="569" style="PADDING-LEFT: 20px">@product.ransomfee</td>
+                </tr>
+                <tr>
+                    <td width="148" height="30" style="PADDING-LEFT: 20px">预警止损机制：</td>
+                    <td width="569"  style="PADDING-LEFT: 20px">@product.warn</td>
+                </tr>
+                <tr>
+                    <td width="148" height="30"  style="PADDING-LEFT: 20px">备注：</td>
+                    <td width="569"  style="PADDING-LEFT: 20px">@product.beizhu</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <script>
+        $(function() {
+            $(".contentlist tbody>tr:odd").addClass("odd");
+            $(".contentlist tbody>tr:even").addClass("even");
+        });
+    </script>
+}

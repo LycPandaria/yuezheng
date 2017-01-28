@@ -1,0 +1,119 @@
+@(ppForm: Form[PreviousProfit], prodMap : Map[Long, String], prodId:Long)
+@admin("产品业绩--编辑", nav = "pps"){
+<div id="crud">
+<div id="crudContent">
+    @if(ppForm("id").valueOr("").isEmpty()){
+        <h3 id="crudShowTitle">添加新的产品业绩</h3>
+    } else {
+        <h3 id="crudShowTitle">编辑</h3>
+    }
+    <div class="objectForm">
+        <form action="@routes.PreviousProfits.save()" method="post" enctype="application/x-www-form-urlencoded">
+            @* 错误提醒 *@
+            @if(flash.containsKey("error")){
+                <div class="error">
+                @flash.get("error")
+                </div>
+            }
+            <div class="error" id="error-div"><p></p></div>
+            <input type="hidden" id="id" name="id" value="@ppForm("id").valueOr("")">
+            <div class="crudField curd_date">
+                <label for="guzhiDate">估值日期 :</label>
+                <input id="guzhiDate" type="text" name="guzhiDate"
+                    value="@ppForm("guzhiDate").valueOr("")" size="10"/>
+                <span class="crudHelp">
+                    日期格式：yyyy-MM-dd
+                    必填
+                </span>
+            </div>
+            <div class="crudField curd_date">
+                <label for="per">
+                    单位净值 :
+                </label>
+                <input id="per" type="text" name="per"
+                    value="@ppForm("per").valueOr("")" size="50"/>
+                <span class="crudHelp"></span>
+            </div>
+            <div class="crudField curd_date">
+                <label for="hs_point">
+                    沪深300指数 :
+                </label>
+                <input id="hs_point" type="text" name="hs_point"
+                value="@ppForm("hs_point").valueOr("")" size="50"/>
+                <span class="crudHelp"></span>
+            </div>
+            <div class="crudField curd_date">
+                <label for="incRate">
+                    净值增长率 :
+                </label>
+                <input id="incRate" type="text" name="incRate"
+                    value="@ppForm("incRate").valueOr("")" size="50"/>
+                <span class="crudHelp"></span>
+            </div>
+            <div class="crudField curd_date">
+                <label for="floatChange">
+                    净值累计变动
+                </label>
+                <input id="floatChange" type="text" name="floatChange"
+                value="@ppForm("floatChange").valueOr("")" size="50"/>
+                <span class="crudHelp"></span>
+            </div>
+            <div class="crudField curd_date">
+                <label for="hs_inc">
+                    沪深300增涨率
+                </label>
+                <input id="hs_inc" type="text" name="hs_inc"
+                value="@ppForm("hs_inc").valueOr("")" size="50"/>
+                <span class="crudHelp"></span>
+            </div>
+            <div class="crudField">
+                <label for="product">
+                    产品：
+                </label>
+                <select id="product" name="product.id">
+                    <option value="0">--请选择--</option>
+                    @for((prodId, prodName) <- prodMap){
+                        <option value="@prodId">@prodName</option>
+                    }
+                </select>
+                <span class="crudHelp">必选</span>
+            </div>
+            <p class="crudButtons">
+                <input type="button" name="save" value="保存" id="btn-save"/>
+            </p>
+        </form>
+    </div>
+</div>
+</div>
+<script>
+    $(function() {
+        //datepicker
+        $("#guzhiDate").datepicker({
+            dateFormat: 'yy-mm-dd',
+            showOtherMonths: true,
+            changeMonth: true,
+            changeYear: true
+        });
+        $("select option").each(function() {
+            if($(this).val() == @prodId){
+                $(this).attr("selected", "selected");
+            }
+        });
+        //表单验证
+        $("#btn-save").click(function() {
+            if($("#guzhiDate").val() ==　''){
+                $("#error-div p").html("请选择改业绩的估值日期。");
+                $("#error-div").show();
+                $("#guzhiDate").focus();
+                return false;
+            } else if($("#product option:selected").val() ==  0){
+                $("#error-div p").html("请为改业绩选择一个对应的产品。");
+                $("#error-div").show();
+                $("#product").focus();
+                return false;
+            }
+            $("form").submit();
+        })
+    })
+</script>
+}

@@ -1,0 +1,72 @@
+@(prodMap: Map[Long, String])
+@admin("产品管理--产品列表", nav = "products"){
+    <script>
+        // 删除产品
+        function del(prodId){
+            if(confirm("确定要删除这个产品？")){
+                $.ajax({
+                    url: '/admin/products/delete/' + prodId,
+                    type: "DELETE",
+                    success: function(results) {
+                        //refresh page
+                        location.reload();
+                    }
+                });
+            }
+        }
+    </script>
+    <div id="crud">
+        <div id="crudContent">
+            <div id="crudList" class="Products">
+                <h2 id="crudListTitle">产品</h2>
+
+                <div id="crudListSearch">
+                    <form action="#" method="get" accept-charset="utf-8"
+                        enctype="application/x-www-form-urlencoded" >
+                        <input type="text" name="search" value="" />
+                        <input type="submit" value="Search" />
+                    </form>
+                </div>
+
+                <div id="crudListTable">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>产品列表</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for((id, name) <- prodMap){
+                                <tr >
+                                    <td>
+                                        <a href="@routes.Products.details(id)">@name</a>
+                                    </td>
+                                    <td class="td-fix">
+                                        <a href="@routes.Products.details(id)">
+                                            <i class="glyphicon glyphicon-pencil"></i> </a>
+                                    </td>
+                                    <td class="td-delete">
+                                        <a id="a-delete" onclick="del('@id')">
+                                            <i class="glyphicon glyphicon-trash"></i> </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <p id="crudListAdd">
+                    <a href="@routes.Products.newProduct()">新增产品</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function() {
+            $("tbody>tr:odd").addClass("odd");
+            $("tbody>tr:even").addClass("even");
+        });
+    </script>
+}

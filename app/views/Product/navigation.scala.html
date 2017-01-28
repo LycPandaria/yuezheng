@@ -1,0 +1,37 @@
+@(prodMap: Map[Long, String], product: Product)(content : Html)
+@main("乐正产品--乐正资本有限公司", nav = "product"){
+    <!--乐正产品-->
+    <div class="gywm_box_zj" align="center" style="background: url('@routes.Assets.at("images/4.jpg")')">
+    </div>
+
+    <div class="gywm_box2_zj w ov_h">
+            <!-- 左边 -->
+        <div class="gywm_box2_l_zj fl">
+            <div class="h_beijing">
+                <h3>乐正产品  <span>products</span></h3>
+            </div>
+            <div>
+                <ul>
+                @for((id, name) <- prodMap) {
+                    <li ><a href="@routes.Application.products(id)" >@name</a></li>
+                }
+                </ul>
+            </div>
+            <p><a href="@routes.Application.contactUs()">
+                <img src="@routes.Assets.at("images/contactUs.jpg")"  width="243" height="141"></a>
+            </p>
+        </div>
+        <div class="gywm_box2_r_zj fr">
+            <div class="bhk">
+                <h3 class="fl">乐正产品</h3>
+                <div class="fr jj_you">
+                    <span>当前位置：</span><a href="@routes.Application.index()" >首页</a> >
+                    <a href="@routes.Application.products(1)" >乐正产品</a> >
+                    <a href="@routes.Application.products(product.getID())">@product.name </a>
+                </div>
+            </div>
+            @* 主要内容 *@
+            @content
+        </div>
+    </div>
+}

@@ -1,0 +1,95 @@
+
+@(currentPage : com.avaje.ebean.Page[PreviousProfit], prodId: Long)
+<script>
+function dele(id) {
+    // 这个只是为了将id这个参数传进来而已
+    del(id, @prodId, @currentPage.getPageIndex);
+}
+
+function del(id, prodId, page){
+    if(confirm("你确定要删除这个历史业绩？")){
+        $.ajax({
+            url: '/admin/pps/delete?' +
+            'id='+id + '&prodId='+prodId + '&page='+page,
+            type: 'DELETE',
+            success:function(results) {
+                $("#ajaxList").html(results);
+            }
+        })
+    }
+}
+</script>
+<div id="crudListTable">
+    <table>
+        <thead>
+            <th>产品</th>
+            <th>单位净值</th>
+            <th>估值日期</th>
+            <th></th>
+            <th></th>
+        </thead>
+        <tbody>
+            @for(pp <- currentPage.getList()){
+                <tr>
+                    <td>
+                    @pp.product
+                    </td>
+                    <td>
+                    @pp.per
+                    </td>
+                    <td>
+                    @pp.guzhiDate.format("yyyy-MM-dd")
+                    </td>
+                    <td class="td-fix">
+                        <a href="@routes.PreviousProfits.details(pp.id)">
+                            <i class="glyphicon glyphicon-pencil"></i></a>
+                    </td>
+                    <td class="td-delete">
+                        <a id="a-delete" onclick="dele('@pp.id')">
+                            <i class="glyphicon glyphicon-trash"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div id="pagination">
+    <ul>
+        @if(currentPage.hasPrev) {
+            <li><button class="prev">&larr;</button></li>
+        } else {
+            <li><button class="prev disabled">&larr;</button></li>
+        }
+        <li class="current">
+        @currentPage.getDisplayXtoYofZ(" - "," / ")
+        </li>
+        @if(currentPage.hasNext) {
+            <li><button class="next">&rarr;</button></li>
+        } else {
+            <li ><button class="next disabled">&rarr;</button></li>
+        }
+    </ul>
+</div>
+    <script>
+        $(function() {
+            $("tbody>tr:odd").addClass("odd");
+            $("tbody>tr:even").addClass("even");
+            $("#pagination .disabled").attr("disabled","disabled");
+            $("#pagination .prev").click(function() {
+                listPPsByProdID(@prodId, @currentPage.getPageIndex-1);
+            });
+            $("#pagination .next").click(function() {
+                listPPsByProdID(@prodId, @currentPage.getPageIndex+1);
+            });
+            function listPPsByProdID(prodId, page){
+                $.ajax({
+                    url: '/admin/pps/list_table?prodId='+prodId + '&page=' +page,
+                    type: "GET",
+                    success:function(results) {
+                        // 把获取得到的数据（一个产品业绩table）
+                        $("#ajaxList").html(results);
+                    }
+                })
+            }
+        })
+    </script>
