@@ -1,0 +1,98 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                           controllers.Application.index()
+GET     /simditor                   controllers.Application.simditor()
+
+# 投资策略 > 投资目标
+GET		/strategy/goal				controllers.Application.investTarget()
+# 投资策略 > 投资范围
+GET		/strategy/level				controllers.Application.level()
+# 投资策略 > 投资策略
+GET		/strategy/strategy			controllers.Application.strategy()
+# 投资策略 > 风险管理
+GET		/strategy/risk				controllers.Application.risk()
+
+# 关于我们 > 公司简介
+GET		/aboutUs/company_intro		controllers.Application.companyIntro()
+# 关于我们 > 特点与优势
+GET		/aboutUs/advantages			controllers.Application.advantages()
+# 关于我们 > 联系我们
+GET 	/aboutUs/contactus			controllers.Application.contactUs()
+# 关于我么> 乐正团队
+GET		/aboutUs/group				controllers.Application.group()
+
+# 新闻资讯 > 乐正新闻
+GET		/idea/company_news			controllers.Application.companyNews()
+# 新闻资讯 > 乐正新闻详情页
+GET     /idea/show_comopantnew/:id  controllers.Application.showCompanyNew(id : Long)
+# 新闻资讯 > 市场资讯
+GET		/idea/market_news			controllers.Application.marketNews()
+#	新闻资讯 》市场资讯详情
+GET		/idea/show_marketnew/:id    controllers.Application.showMarketNews(id : Long)
+
+#显示产品详情
+GET		/product/:id				controllers.Application.products(id: Long)
+#显示产品历史业绩
+GET     /product/:id/yeji           controllers.Application.productsYJ(id : Long)
+#获得产品历史业绩数据，以json的形式
+GET     /product/:id/yeji/data_json     controllers.Application.profitsJson(id : Long)
+#显示产品历史业绩分页
+GET     /product/:id/yeji/:page          controllers.Application.showPPsByProdAndPage(id:Long, page:Int)
+# 显示走势图
+GET		/product/:id/zoushi		    controllers.Application.productsPic(id: Long)
+# 显示购买流程
+GET		/product/:id/liucheng	    controllers.Application.productsLC(id: Long)
+# 显示净值图
+GET     /picture/:id                controllers.Application.picture(id : Long)
+
+# 留言中心
+GET     /leave_msg                  controllers.Messages.leaveMsg()
+# 保存留言
+POST    /save_msg/                  controllers.Messages.saveMsg()
+
+########后台管理
+# 后台登陆
+GET     /admin/login                controllers.Admin.login()
+POST    /admin/authenticate         controllers.Admin.authenticate()
+#后台首页
+GET     /admin/index                controllers.Admin.index()
+GET     /admin/logout               controllers.Admin.logout()
+
+# 产品管理
+GET     /admin/products/list            controllers.Products.list()
+GET     /admin/products/details/:id     controllers.Products.details(id : Long)
+GET     /admin/products/new             controllers.Products.newProduct()
+DELETE  /admin/products/delete/:id      controllers.Products.delete(id : Long)
+POST    /admin/products/save            controllers.Products.save()
+
+# 产品业绩管理
+GET     /admin/pps/list             controllers.PreviousProfits.list(prodId:Long?=0L, page:Int?=0)
+GET     /admin/pps/list_table       controllers.PreviousProfits.getPPsTable(prodId:Long, page:Int)
+GET     /admin/pps/details/:id      controllers.PreviousProfits.details(id : Long)
+GET     /admin/pps/new              controllers.PreviousProfits.newPP()
+DELETE  /admin/pps/delete           controllers.PreviousProfits.delete(id:Long, prodId:Long, page:Int)
+POST    /admin/pps/save             controllers.PreviousProfits.save()
+
+#留言
+GET     /admin/messages/list        controllers.Messages.list(page:Int?=0)
+DELETE  /admin/messages/delete      controllers.Messages.delete(id : Long)
+
+# 市场资讯
+GET     /admin/marketnews/list          controllers.MarketNews.list(page:Int?=0)
+GET     /admin/marketnews/new           controllers.MarketNews.newMarketNew()
+GET     /admin/marketnews/details/:id   controllers.MarketNews.details(id : Long)
+DELETE  /admin/marketnews/delete        controllers.MarketNews.delete(id : Long)
+POST    /admin/marketnews/save          controllers.MarketNews.save()
+
+# 乐正新闻
+GET     /admin/newcontents/list         controllers.NewContents.list(page:Int?=0)
+GET     /admin/newcontents/new          controllers.NewContents.newContent()
+GET     /admin/newcontents/details/:id  controllers.NewContents.details(id : Long)
+DELETE  /admin/newcontents/delete       controllers.NewContents.delete(id : Long)
+POST    /admin/newcontents/save         controllers.NewContents.save()
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
